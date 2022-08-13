@@ -1,77 +1,59 @@
-[![Youtube][youtube-shield]][youtube-url]
-[![Facebook][facebook-shield]][facebook-group-url]
+## Redux core concept with the vanilla js
 
-<!-- PROJECT LOGO -->
-<br />
- <p align="center">
-    <img src="https://avatars.githubusercontent.com/u/73503432?v=4" alt="Logo" width="80" height="80" />
-    <h3 align="center "><a href="https://learnwithsumit.com/courses/think-in-a-redux-way/what-is-state-management" target="_blank" >THINK IN A REDUX WAY - MODULE 1 - LESSON 1</a></h3>
-</p>
+- First we have to create a reducer function, which is take two parameter as always. They are;
 
-<!-- TABLE OF CONTENTS -->
+  - State [initial State]
+  - action 🥳.
 
-## ![tableOfContent][tableofcontent-shield] Table of Contents
+    ```
+    In the parameter of action, it will be an object. Which should have contain a value called 'Type'. The action value type define that what will do the the reducer function, in short hand we assume that reducer function will conditionally work by action type ✔✌
+    ```
 
-| HTML TEMPLATE                            | CODE RUN                   | CONTACT                    |
-| ---------------------------------------- | -------------------------- | -------------------------- |
-| [Get HTML template](#-get-html-template) | [How to run](#-how-to-run) | [Contact us](#-contact-us) |
+- Then we have to create a store function which is take reducer function as the parameter
 
-<br>
+  ```
+  👉 const store = Redux.createStore(counterReducer);
+  ```
 
-<!-- GET HTML TEMPLATE -->
+- After that, we have to dispatch the action by the eventListener or something else. Which will send an action.type to different behave for reducer function
 
-## ![htmlIcon][htmlicon-shield] Get HTML Template
+  ```
+   👉 increment.addEventListener("click", () => {
+    store.dispatch({
+    type: "increment",
+    })});
+  ```
 
-You can find the raw HTML template of the counter application from the "html_template" folder.
+  ```
+  👉 decrement.addEventListener("click", () => {
+     store.dispatch({
+         type: "decrement",
+   })});
+  ```
 
-<!-- HOW TO RUN -->
+- The render function will change the UI by the condition. Here is an example.
 
-## ![rocketIcon][rocketicon-shield] How to run
+       create render function const render = () => {const state = store.getState();
+        counter.innerText = state.value.toString()
+      };
 
-Please follow the below instructions to run this branch in your machine:
+  ```
+  the getState() function come from redux cdn
+  ```
 
-1. Login to the GitHub account on which you have been granted access to this repository. If you have purchased the course but didn't get the access to this repository, please contact our support team. You will find contact details below.
+- After that we have to change the UI by render function manually, because we work in a vanilla js file with Redux Cdn.
+- Then we have to subscribed the render function as like mentioned in the below
 
-2. Clone this repository -
-   ```sh
-   git clone https://github.com/Learn-with-Sumit/think-in-a-redux-way.git
-   ```
-3. Go to the cloned project directory
-   ```sh
-   cd think-in-a-redux-way
-   ```
-4. Checkout/switch to branch 1.1
-   ```sh
-   git checkout 1.1
-   ```
-5. Just run the index.html file with Visual Studio Code [Live Server plugin](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
+  - render();
 
-<br>
+  ```
+  call it for default initialization
+  ```
 
-<!-- CONTACT  -->
+  - store.subscribe(render);
 
-## ![contactIcon][contacticon-shield] Contact us
+  ```
+  In top of the line we found the subscribe from the redux(CDN) and it will work after any of the handle is clicked
+  ```
 
-[![Facebook][facebook-shield]][facebook-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Instagram][instagram-shield]][instagram-url]
-[![mail][mail-shield]][mail-url]
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[youtube-shield]: https://img.shields.io/badge/-Youtube-black.svg?style=flat-square&logo=youtube&color=555&logoColor=white
-[youtube-url]: https://youtube.com/LearnwithSumit
-[facebook-shield]: https://img.shields.io/badge/-Facebook-black.svg?style=flat-square&logo=facebook&color=555&logoColor=white
-[facebook-url]: https://facebook.com/letslearnwithsumit
-[facebook-group-url]: https://facebook.com/groups/learnwithsumit
-[instagram-shield]: https://img.shields.io/badge/-Instagram-black.svg?style=flat-square&logo=instagram&color=555&logoColor=white
-[instagram-url]: https://instagram.com/learnwithsumit
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/company/learnwithsumit
-[thumbnail-shield]: https://i.ibb.co/d6hxnvd/Screenshot-50.png
-[mail-shield]: https://img.shields.io/badge/%F0%9F%93%A7%20Email-support%40learnwithsumit.com-lightgray
-[mail-url]: mailto:support@learnwithsumit.com
-[tableofcontent-shield]: https://img.icons8.com/external-flatart-icons-flat-flatarticons/28/undefined/external-direction-business-and-teamwork-flatart-icons-flat-flatarticons.png
-[htmlicon-shield]: https://img.icons8.com/external-flaticons-flat-flat-icons/28/undefined/external-html-computer-programming-flaticons-flat-flat-icons.png
-[rocketicon-shield]: https://img.icons8.com/arcade/30/undefined/experimental-rocket-arcade.png
-[contacticon-shield]: https://img.icons8.com/external-flaticons-lineal-color-flat-icons/28/undefined/external-support-communication-media-flaticons-lineal-color-flat-icons.png
+# That's it the redux core concept 🤷‍♂️
